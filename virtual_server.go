@@ -4,33 +4,33 @@ package main
 type VirtualServer struct {
 	Properties struct {
 		Basic struct {
-			AddClusterIP             bool          `json:"add_cluster_ip"`
-			AddXForwardedFor         bool          `json:"add_x_forwarded_for"`
-			AddXForwardedProto       bool          `json:"add_x_forwarded_proto"`
-			AutodetectUpgradeHeaders bool          `json:"autodetect_upgrade_headers"`
-			BandwidthClass           string        `json:"bandwidth_class"`
-			CloseWithRst             bool          `json:"close_with_rst"`
-			Completionrules          []string      `json:"completionrules"`
-			ConnectTimeout           int           `json:"connect_timeout"`
-			Enabled                  bool          `json:"enabled"`
-			FtpForceServerSecure     bool          `json:"ftp_force_server_secure"`
-			GlbServices              []string      `json:"glb_services"`
-			ListenOnAny              bool          `json:"listen_on_any"`
-			ListenOnHosts            []interface{} `json:"listen_on_hosts"`
-			ListenOnTrafficIps       []string      `json:"listen_on_traffic_ips"`
-			Note                     string        `json:"note"`
-			Pool                     string        `json:"pool"`
-			Port                     int           `json:"port"`
-			ProtectionClass          string        `json:"protection_class"`
-			Protocol                 string        `json:"protocol"`
-			RequestRules             []string      `json:"request_rules"`
-			ResponseRules            []string      `json:"response_rules"`
-			SlmClass                 string        `json:"slm_class"`
-			SoNagle                  bool          `json:"so_nagle"`
-			SslClientCertHeaders     string        `json:"ssl_client_cert_headers"`
-			SslDecrypt               bool          `json:"ssl_decrypt"`
-			SslHonorFallbackScsv     string        `json:"ssl_honor_fallback_scsv"`
-			Transparent              bool          `json:"transparent"`
+			AddClusterIP             bool     `json:"add_cluster_ip"`
+			AddXForwardedFor         bool     `json:"add_x_forwarded_for"`
+			AddXForwardedProto       bool     `json:"add_x_forwarded_proto"`
+			AutodetectUpgradeHeaders bool     `json:"autodetect_upgrade_headers"`
+			BandwidthClass           string   `json:"bandwidth_class"`
+			CloseWithRst             bool     `json:"close_with_rst"`
+			Completionrules          []string `json:"completionrules"`
+			ConnectTimeout           int      `json:"connect_timeout"`
+			Enabled                  bool     `json:"enabled"`
+			FtpForceServerSecure     bool     `json:"ftp_force_server_secure"`
+			GlbServices              []string `json:"glb_services"`
+			ListenOnAny              bool     `json:"listen_on_any"`
+			ListenOnHosts            []string `json:"listen_on_hosts"`
+			ListenOnTrafficIps       []string `json:"listen_on_traffic_ips"`
+			Note                     string   `json:"note"`
+			Pool                     string   `json:"pool"`
+			Port                     int      `json:"port"`
+			ProtectionClass          string   `json:"protection_class"`
+			Protocol                 string   `json:"protocol"`
+			RequestRules             []string `json:"request_rules"`
+			ResponseRules            []string `json:"response_rules"`
+			SlmClass                 string   `json:"slm_class"`
+			SoNagle                  bool     `json:"so_nagle"`
+			SslClientCertHeaders     string   `json:"ssl_client_cert_headers"`
+			SslDecrypt               bool     `json:"ssl_decrypt"`
+			SslHonorFallbackScsv     string   `json:"ssl_honor_fallback_scsv"`
+			Transparent              bool     `json:"transparent"`
 		} `json:"basic"`
 		Aptimizer struct {
 			Enabled bool          `json:"enabled"`

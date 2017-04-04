@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"time"
 )
 
@@ -10,16 +11,18 @@ const (
 
 // Client The Api client for stingray.
 type Client struct {
-	config    Config
-	userAgent string
+	config        Config
+	userAgent     string
+	httpTimeout   time.Duration
+	httpTransport *http.Transport
 }
 
 // Config The confid structure for the client api for stingray.
 type Config struct {
-	UserAgent   string
-	HTTPTimeout time.Duration
-	Host        string
-	Port        int
-	UserName    string
-	Password    string
+	UserAgent          string        `json:"userAgent"`
+	HTTPTimeout        time.Duration `json:"duration"`
+	HTTPEndpoint       string        `json:"endpoint"`
+	InsecureSkipVerify bool          `json:"insecureSkipVerify"`
+	UserName           string        `json:"username"`
+	Password           string        `json:"password"`
 }
