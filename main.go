@@ -30,7 +30,7 @@ func main() {
 	}
 
 	if client, err := NewClient(config); err == nil {
-		if actions, err := client.GetActionList("/api"); err == nil {
+		if actions, err := client.GetActionList("/api/tm"); err == nil {
 			fmt.Println(actions)
 		} else {
 			fmt.Println(err)

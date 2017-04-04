@@ -98,3 +98,81 @@ func (client *Client) GetActionList(url string) (*ActionList, error) {
 
 	return &actionList, nil
 }
+
+// GetTrafficIPGroup Get a specific traffic IP group resource from the stingray API.
+func (client *Client) GetTrafficIPGroup(url string) (*TrafficIPGroup, error) {
+	request, err := client.createRequest("GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	httpClient := &http.Client{Timeout: client.httpTimeout, Transport: client.httpTransport}
+
+	response, err := httpClient.Do(request)
+	if err != nil {
+		return nil, err
+	}
+
+	defer response.Body.Close()
+
+	trafficIPGroup := TrafficIPGroup{}
+
+	err = json.NewDecoder(response.Body).Decode(&trafficIPGroup)
+	if err != nil {
+		return nil, err
+	}
+
+	return &trafficIPGroup, nil
+}
+
+// GetPool Get a specific pool resource from the stingray API.
+func (client *Client) GetPool(url string) (*Pool, error) {
+	request, err := client.createRequest("GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	httpClient := &http.Client{Timeout: client.httpTimeout, Transport: client.httpTransport}
+
+	response, err := httpClient.Do(request)
+	if err != nil {
+		return nil, err
+	}
+
+	defer response.Body.Close()
+
+	pool := Pool{}
+
+	err = json.NewDecoder(response.Body).Decode(&pool)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pool, nil
+}
+
+// GetVirtualServer Get a specific virtual server resource from the stingray API.
+func (client *Client) GetVirtualServer(url string) (*VirtualServer, error) {
+	request, err := client.createRequest("GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	httpClient := &http.Client{Timeout: client.httpTimeout, Transport: client.httpTransport}
+
+	response, err := httpClient.Do(request)
+	if err != nil {
+		return nil, err
+	}
+
+	defer response.Body.Close()
+
+	virtualServer := VirtualServer{}
+
+	err = json.NewDecoder(response.Body).Decode(&virtualServer)
+	if err != nil {
+		return nil, err
+	}
+
+	return &virtualServer, nil
+}
