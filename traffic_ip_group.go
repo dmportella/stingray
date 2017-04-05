@@ -1,4 +1,4 @@
-package main
+package stingray
 
 // TrafficIPGroup The data representation structure of a Traffic IP Group within stingray.
 type TrafficIPGroup struct {

@@ -1,4 +1,4 @@
-package main
+package stingray
 
 // VirtualServer The data representation structure of a Virtual Server within stingray.
 type VirtualServer struct {

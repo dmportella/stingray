@@ -1,4 +1,4 @@
-package main
+package stingray
 
 // Pool The data representation structure of a Pool within stingray.
 type Pool struct {

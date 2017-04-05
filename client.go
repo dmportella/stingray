@@ -1,4 +1,4 @@
-package main
+package stingray
 
 import (
 	"net/http"
