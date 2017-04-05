@@ -5,6 +5,7 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"path"
@@ -99,25 +100,64 @@ func (client *Client) GetActionList(url string) (*ActionList, error) {
 	return &actionList, nil
 }
 
-// GetTrafficIPGroup Get a specific traffic IP group resource from the stingray API.
-func (client *Client) GetTrafficIPGroup(url string) (*TrafficIPGroup, error) {
-	request, err := client.createRequest("GET", url, nil)
+func (client *Client) putResource(url string, object interface{}) error {
+	data, err := json.Marshal(&object)
+
+	request, err := client.createRequest("PUT", url, data)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	httpClient := &http.Client{Timeout: client.httpTimeout, Transport: client.httpTransport}
 
 	response, err := httpClient.Do(request)
 	if err != nil {
-		return nil, err
+		return err
+	}
+
+	if response.StatusCode != http.StatusOK {
+		return fmt.Errorf("Error status from the stingray api status code: %s", response.Status)
+	}
+
+	// stingray api returns the changed object right now we ignore this.
+	/*	defer response.Body.Close()
+
+		err = json.NewDecoder(response.Body).Decode(&object)
+		if err != nil {
+			return err
+		}*/
+
+	return nil
+}
+
+func (client *Client) getResource(url string, object interface{}) error {
+	request, err := client.createRequest("GET", url, nil)
+	if err != nil {
+		return err
+	}
+
+	httpClient := &http.Client{Timeout: client.httpTimeout, Transport: client.httpTransport}
+
+	response, err := httpClient.Do(request)
+	if err != nil {
+		return err
 	}
 
 	defer response.Body.Close()
 
+	err = json.NewDecoder(response.Body).Decode(&object)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// GetTrafficIPGroup Get a specific traffic IP group resource from the stingray API.
+func (client *Client) GetTrafficIPGroup(url string) (*TrafficIPGroup, error) {
 	trafficIPGroup := TrafficIPGroup{}
 
-	err = json.NewDecoder(response.Body).Decode(&trafficIPGroup)
+	err := client.getResource(url, &trafficIPGroup)
 	if err != nil {
 		return nil, err
 	}
@@ -125,25 +165,21 @@ func (client *Client) GetTrafficIPGroup(url string) (*TrafficIPGroup, error) {
 	return &trafficIPGroup, nil
 }
 
+// SetTrafficIPGroup Sets a specific traffic IP group resource from the stingray API.
+func (client *Client) SetTrafficIPGroup(url string, trafficIPGroup TrafficIPGroup) error {
+	err := client.putResource(url, &trafficIPGroup)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // GetPool Get a specific pool resource from the stingray API.
 func (client *Client) GetPool(url string) (*Pool, error) {
-	request, err := client.createRequest("GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	httpClient := &http.Client{Timeout: client.httpTimeout, Transport: client.httpTransport}
-
-	response, err := httpClient.Do(request)
-	if err != nil {
-		return nil, err
-	}
-
-	defer response.Body.Close()
-
 	pool := Pool{}
 
-	err = json.NewDecoder(response.Body).Decode(&pool)
+	err := client.getResource(url, &pool)
 	if err != nil {
 		return nil, err
 	}
@@ -151,28 +187,35 @@ func (client *Client) GetPool(url string) (*Pool, error) {
 	return &pool, nil
 }
 
+// SetPool Set a specific pool resource from the stingray API.
+func (client *Client) SetPool(url string, pool Pool) error {
+	err := client.putResource(url, &pool)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // GetVirtualServer Get a specific virtual server resource from the stingray API.
 func (client *Client) GetVirtualServer(url string) (*VirtualServer, error) {
-	request, err := client.createRequest("GET", url, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	httpClient := &http.Client{Timeout: client.httpTimeout, Transport: client.httpTransport}
-
-	response, err := httpClient.Do(request)
-	if err != nil {
-		return nil, err
-	}
-
-	defer response.Body.Close()
-
 	virtualServer := VirtualServer{}
 
-	err = json.NewDecoder(response.Body).Decode(&virtualServer)
+	err := client.getResource(url, &virtualServer)
 	if err != nil {
 		return nil, err
 	}
 
 	return &virtualServer, nil
+}
+
+
+// SetVirtualServer Set a specific virtual server resource from the stingray API.
+func (client *Client) SetVirtualServer(url string, virtualServer VirtualServer) error {
+	err := client.putResource(url, &virtualServer)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

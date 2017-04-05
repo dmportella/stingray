@@ -30,8 +30,18 @@ func main() {
 	}
 
 	if client, err := NewClient(config); err == nil {
-		if actions, err := client.GetActionList("/api/tm"); err == nil {
-			fmt.Println(actions)
+		if actions, err := client.GetPool("/api/tm/3.9/config/active/pools/rancher.test"); err == nil {
+			data, _ := json.Marshal(&actions)
+
+			fmt.Println(string(data))
+
+			actions.Properties.Basic.Note = "testing api"
+
+			if err := client.SetPool("/api/tm/3.9/config/active/pools/rancher.test", *actions); err == nil {
+				fmt.Println("done")
+			} else {
+				fmt.Println(err)
+			}
 		} else {
 			fmt.Println(err)
 		}
