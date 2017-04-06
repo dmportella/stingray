@@ -3,7 +3,7 @@
 
 @dmportella
 
-[![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/dmportella/stingray/master/LICENSE) [![Build Status](https://travis-ci.org/dmportella/stingray.svg?branch=master)](https://travis-ci.org/dmportella/stingray) [![GoDoc](https://godoc.org/github.com/dmportella/stingray?status.svg)](https://godoc.org/github.com/dmportella/stingray) [![Go Report Card](https://goreportcard.com/badge/github.com/dmportella/stingray)](https://goreportcard.com/report/github.com/dmportella/stingray) [![Github Release](https://img.shields.io/github/release/dmportella/stingray.svg)](https://github.com/dmportella/stingray/releases)
+[![GitHub license](https://img.shields.io/badge/license-MPL%202.0-blue.svg)](https://raw.githubusercontent.com/dmportella/stingray/master/LICENSE) [![Build Status](https://travis-ci.org/dmportella/stingray.svg?branch=master)](https://travis-ci.org/dmportella/stingray) [![GoDoc](https://godoc.org/github.com/dmportella/stingray?status.svg)](https://godoc.org/github.com/dmportella/stingray) [![Go Report Card](https://goreportcard.com/badge/github.com/dmportella/stingray)](https://goreportcard.com/report/github.com/dmportella/stingray) [![Github Release](https://img.shields.io/github/release/dmportella/stingray.svg)](https://github.com/dmportella/stingray/releases)
 
 ## Brocade Stingray API
 
