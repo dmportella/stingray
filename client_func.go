@@ -5,7 +5,6 @@ import (
 	"crypto/tls"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"path"
@@ -208,7 +207,6 @@ func (client *Client) GetVirtualServer(url string) (*VirtualServer, error) {
 
 	return &virtualServer, nil
 }
-
 
 // SetVirtualServer Set a specific virtual server resource from the stingray API.
 func (client *Client) SetVirtualServer(url string, virtualServer VirtualServer) error {
